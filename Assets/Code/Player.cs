@@ -7,16 +7,13 @@ namespace RollTheBall
     internal abstract class Player : MonoBehaviour
     {
         protected PlayerStats _stats;
+        protected Rigidbody _rigidbody;
         protected void Awake()
         {
-            _stats = FindObjectOfType<PlayerStats>();
+            _stats = References.PlayerStats;
+            _rigidbody = GetComponent<Rigidbody>();
         }
-        protected void Start()
-        {
-            if (_stats == null)
-                throw new NullReferenceException("Создайте экземпляр объекта PlayerStats!");
-        }
-        public abstract void Move();
+        public abstract void Move(float x, float y);
     }
 
 }

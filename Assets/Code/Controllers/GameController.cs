@@ -6,19 +6,24 @@ namespace RollTheBall
 {
     internal sealed class GameController : MonoBehaviour, IDisposable
     {
-        private readonly Text _gameEndingLabel;
-        private readonly Text _notificationLabel;
-        private readonly Text _tokensLabel;
         private UserInterface _ui;
-        private readonly PlayerStats _stats;
+        private PlayerStats _stats;
         private Hole[] _holes;
         private Bonus[] _bonuses;
+        private Canvas _canvas;
         private AudioManager _audioManager;
         private void Awake()
         {
             _audioManager = new AudioManager();
+            _canvas = References.Canvas;
+            _stats = References.PlayerStats;
 
-            _ui = new UserInterface(_gameEndingLabel, _notificationLabel, _tokensLabel);
+            Text geLabel = Instantiate(Resources.Load<Text>("UI/EndGame"), _canvas.transform);
+            Text notificationLabel = Instantiate(Resources.Load<Text>("UI/Notifications"), _canvas.transform);
+            Text tokensLabel = Instantiate(Resources.Load<Text>("UI/Tokens"), _canvas.transform);
+            Button restartButton = Instantiate(Resources.Load<Button>("UI/Restart"), _canvas.transform);
+            _ui = new UserInterface(geLabel, notificationLabel, tokensLabel, restartButton);
+
             _stats.PlayerDeath += _ui.Lose;
             _stats.PlayerDeath += PauseGame;
             _stats.PlayerDeath += _audioManager.PlayDefeatSound;

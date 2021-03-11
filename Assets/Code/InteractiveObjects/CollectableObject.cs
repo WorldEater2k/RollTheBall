@@ -8,7 +8,7 @@ namespace RollTheBall
         protected PlayerStats _stats;
         protected void Awake()
         {
-            _stats = FindObjectOfType<PlayerStats>();
+            _stats = References.PlayerStats;
         }
         protected virtual void Start()
         {

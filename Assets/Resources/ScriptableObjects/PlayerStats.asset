@@ -10,5 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f1766bdfeac11347b73c3281a0a1aa2, type: 3}
-  m_Name: New PlayerStats
+  m_Name: PlayerStats
   m_EditorClassIdentifier: 
+  _health: 100
+  _speed: 1
+  _mass: 1
+  _tokens: 0
