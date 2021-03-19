@@ -2,9 +2,9 @@ namespace RollTheBall
 {
     internal sealed class BigBonus : Bonus
     {
-        protected override void Start()
+        protected override void Awake()
         {
-            base.Start();
+            base.Awake();
             _value = 15;
         }
     }

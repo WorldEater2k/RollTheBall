@@ -4,9 +4,9 @@ namespace RollTheBall
 {
     internal sealed class SmallBonus : Bonus
     {
-        protected override void Start()
+        protected override void Awake()
         {
-            base.Start();
+            base.Awake();
             _value = 5;
         }
     }
