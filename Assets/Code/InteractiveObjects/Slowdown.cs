@@ -4,9 +4,9 @@ namespace RollTheBall
 {
     internal sealed class Slowdown : SpeedBuff
     {
-        protected override void Start()
+        protected override void Awake()
         {
-            base.Start();
+            base.Awake();
             _speedCoeff = 0.5f;
         }
 

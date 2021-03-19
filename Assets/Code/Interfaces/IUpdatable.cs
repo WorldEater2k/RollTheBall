@@ -1,6 +1,10 @@
-using UnityEngine;
+using System;
 
-internal interface IUpdatable
+namespace RollTheBall
 {
-    public void MyUpdate();
+    internal interface IUpdatable : IDisposable
+    {
+        public void SubscribeToUpdate();
+        public void MyUpdate();
+    }
 }

@@ -4,9 +4,9 @@ namespace RollTheBall
 {
     internal sealed class PlayerBall : Player
     {
-        public override void Move(float x, float y)
+        public override void Move(float force, Vector3 direction)
         {
-            _rigidbody.AddForce(new Vector3(x, y, 0) * _stats.Speed, ForceMode.Impulse);
+            _rigidbody.AddForce(direction * force * _stats.Speed, ForceMode.Impulse);
         }
     }
 

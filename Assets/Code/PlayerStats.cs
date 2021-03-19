@@ -45,7 +45,8 @@ namespace RollTheBall
             {
                 if (value >= 0)
                     _tokens = value;
-                throw new ParamException("Кол-во токенов не может быть меньше 0.", value);
+                else
+                    throw new ParamException("Кол-во токенов не может быть меньше 0.", value);
             }
         }
         public float Mass
@@ -55,7 +56,8 @@ namespace RollTheBall
             {
                 if (value >= 0)
                     _mass = value;
-                throw new ParamException("Масса игрока не может быть меньше 0.", value);
+                else
+                    throw new ParamException("Масса игрока не может быть меньше 0.", value);
             }
         }
     }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace RollTheBall
 {
-    internal sealed class AudioManager
+    internal sealed class AudioPlayer
     {
         public void PlayWinningSound()
         {

@@ -4,9 +4,9 @@ namespace RollTheBall
 {
     internal sealed class Boost : SpeedBuff
     {
-        protected override void Start()
+        protected override void Awake()
         {
-            base.Start();
+            base.Awake();
             _speedCoeff = 1.7f;
         }
 

@@ -13,7 +13,7 @@ namespace RollTheBall
             _stats = References.PlayerStats;
             _rigidbody = GetComponent<Rigidbody>();
         }
-        public abstract void Move(float x, float y);
+        public abstract void Move(float force, Vector3 direction);
     }
 
 }

@@ -11,12 +11,20 @@ namespace RollTheBall
         private Hole[] _holes;
         private Bonus[] _bonuses;
         private Canvas _canvas;
-        private AudioManager _audioManager;
+        private AudioPlayer _audioManager;
+        private Initializator _initializator;
+        private UpdateController _updateController;
+        private InputController _inputController;
         private void Awake()
         {
-            _audioManager = new AudioManager();
+            _audioManager = new AudioPlayer();
             _canvas = References.Canvas;
             _stats = References.PlayerStats;
+
+            _initializator = References.Initializator;
+            _updateController = References.UpdateController;
+            _inputController = new InputController(_initializator, _updateController);
+            _initializator.InitializeAll();
 
             Text geLabel = Instantiate(Resources.Load<Text>("UI/EndGame"), _canvas.transform);
             Text notificationLabel = Instantiate(Resources.Load<Text>("UI/Notifications"), _canvas.transform);
@@ -43,12 +51,22 @@ namespace RollTheBall
                 b.BonusFound += _ui.DisplayTokens;
             }
         }
+        private void Update()
+        {
+            _updateController.UpdateAll();
+        }
+        private void OnDestroy()
+        {
+            Dispose();
+        }
         private void PauseGame()
         {
             Time.timeScale = 0.0f;
         }
         public void Dispose()
         {
+            _inputController.Dispose();
+
             _stats.PlayerDeath -= _ui.Lose;
             _stats.PlayerDeath -= PauseGame;
             _stats.PlayerDeath -= _audioManager.PlayDefeatSound;
