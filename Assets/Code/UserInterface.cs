@@ -40,7 +40,7 @@ namespace RollTheBall
         }
         public void DisplayTokens(int value)
         {
-            _tokensLabel.text = value.ToString();
+            _tokensLabel.text = (int.Parse(_tokensLabel.text) + value).ToString();
         }
 
         public void RestartGame()

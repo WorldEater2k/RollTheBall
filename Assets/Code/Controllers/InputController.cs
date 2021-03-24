@@ -8,14 +8,17 @@ namespace RollTheBall
         private Player _player;
         private Transform _cameraPos;
         private Transform _cameraCenter;
-        private Initializator _initializator;
-        private UpdateController _updateController;
+        private readonly Initializator _initializator;
+        private readonly UpdateController _updateController;
+        private readonly DataRepository _dataRepository;
+
         public InputController(Initializator initializator, UpdateController updateController)
         {
             _initializator = initializator;
             _updateController = updateController;
             SubscribeToInit();
             SubscribeToUpdate();
+            _dataRepository = new DataRepository();
         }
         public void Init()
         {
@@ -32,19 +35,24 @@ namespace RollTheBall
             float z = Input.GetAxis("Vertical");
             _player.Move(z * Time.deltaTime, _cameraPos.forward);
             _cameraCenter.position = _player.transform.position;
+
+            if (Input.GetKeyDown(KeyCode.F5))
+                _dataRepository.Save(_player);
+            if (Input.GetKeyDown(KeyCode.F6))
+                _dataRepository.Load();
         }
         public void SubscribeToInit()
         {
-            References.Initializator.OnInitialization += Init;
+            _initializator.OnInitialization += Init;
         }
         public void SubscribeToUpdate()
         {
-            References.UpdateController.OnUpdate += MyUpdate;
+            _updateController.OnUpdate += MyUpdate;
         }
         public void Dispose()
         {
-            References.UpdateController.OnUpdate -= MyUpdate;
-            References.Initializator.OnInitialization -= Init;
+            _updateController.OnUpdate -= MyUpdate;
+            _initializator.OnInitialization -= Init;
         }
     }
 }

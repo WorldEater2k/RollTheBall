@@ -1,9 +1,9 @@
 namespace RollTheBall
 {
     public delegate void FindBonus(int value);
-    internal class Bonus : CollectableObject
+    internal abstract class Bonus : CollectableObject
     {
-        protected int _value = 10;
+        protected int _value;
         public event FindBonus BonusFound;
         protected override void Collect()
         {
