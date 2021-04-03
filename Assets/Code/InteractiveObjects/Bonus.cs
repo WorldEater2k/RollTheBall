@@ -1,14 +1,27 @@
+using System;
+
 namespace RollTheBall
 {
     public delegate void FindBonus(int value);
     internal abstract class Bonus : CollectableObject
     {
-        protected int _value;
+        public int Value { get; protected set; }
         public event FindBonus BonusFound;
         protected override void Collect()
         {
-            _stats.Tokens += _value;
-            BonusFound?.Invoke(_value);
+            _stats.Tokens += Value;
+            BonusFound?.Invoke(Value);
+        }
+
+        protected (BonusType Type, int Value) GetInfo()
+        {
+            BonusType type = GetType().Name switch
+            {
+                "BigBonus" => BonusType.Big,
+                "SmallBonus" => BonusType.Small,
+                _ => BonusType.Common,
+            };
+            return (type, Value);
         }
     }
 

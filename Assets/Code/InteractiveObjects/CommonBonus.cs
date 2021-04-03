@@ -7,7 +7,7 @@ namespace RollTheBall
         protected override void Awake()
         {
             base.Awake();
-            _value = 10;
+            Value = 10;
         }
     }
 }
