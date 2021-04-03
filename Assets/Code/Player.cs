@@ -1,9 +1,11 @@
 using UnityEngine;
-using System;
 
 namespace RollTheBall
 {
     public delegate void PlayerDying();
+
+    [RequireComponent(typeof(AudioSource))]
+    [RequireComponent(typeof(Rigidbody))]
     internal abstract class Player : MonoBehaviour
     {
         protected PlayerStats _stats;
