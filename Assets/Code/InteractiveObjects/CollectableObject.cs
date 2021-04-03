@@ -3,7 +3,7 @@ using System;
 
 namespace RollTheBall
 {
-    internal abstract class CollectableObject : MonoBehaviour, IUpdatable
+    public abstract class CollectableObject : MonoBehaviour, IUpdatable
     {
         [SerializeField] protected float _rotationSpeed = 50f;
         protected PlayerStats _stats;
